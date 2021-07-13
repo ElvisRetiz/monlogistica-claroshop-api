@@ -8,7 +8,7 @@
     "dev": "nodemon src/index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Elvis Retiz",
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
