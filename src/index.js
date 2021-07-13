@@ -1,11 +1,13 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const app = require("./app");
+let port = 8085;
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+async function main() {
+  try {
+    app.listen(port);
+    console.log(`APIRest running on http://localhost:${port}/api/`);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`)
-})
+main();
