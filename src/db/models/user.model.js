@@ -43,3 +43,5 @@ User.init({
     tableName: 'Usuarios',
     timestamps: false
 })
+
+module.exports = User;
