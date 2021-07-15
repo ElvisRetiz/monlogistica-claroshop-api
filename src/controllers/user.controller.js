@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+const sequelize = require('../db/index');
 
 const User = require('../db/models/user.model');
 
@@ -7,6 +8,22 @@ const controller = {
         try {
             let users = await User.findAll();
             return res.send(users)
+        } catch (error) {
+            console.log(error);
+            return  res.send({
+                type: "Error",
+                message: error.message
+            })
+        }
+    },
+    createUser: async (req, res) => {
+        try {
+            const { usuario, nombre, password, correo, tipo } = req.body;
+            await sequelize.query(`EXEC sp_UsuariosInsertar ${usuario},${nombre},${password},${correo},${tipo},0,NULL,1`);
+            res.send({
+                type: "Success",
+                message: "El usuario fue creado satisfactoriamente"
+            })
         } catch (error) {
             console.log(error);
             return  res.send({
