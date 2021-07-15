@@ -32,6 +32,23 @@ const controller = {
                 message: error.message
             })
         }
+    },
+    deleteUser: async (req,res) => {
+        try {
+            const { usuario } = req.query;
+            await sequelize.query(`EXEC sp_UsuariosBorrar '${usuario}'`);
+            res.send({
+                type: "Success",
+                message: "El usuario fue eliminado satisfactoriamente"
+            })
+
+        } catch (error) {
+            console.log(error);
+            return  res.send({
+                type: "Error",
+                message: error.message
+            })
+        }
     }
 }
 
