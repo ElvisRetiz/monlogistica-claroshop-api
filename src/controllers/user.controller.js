@@ -19,7 +19,8 @@ const controller = {
     createUser: async (req, res) => {
         try {
             const { usuario, nombre, password, correo, tipo } = req.body;
-            await sequelize.query(`EXEC sp_UsuariosInsertar ${usuario},${nombre},${password},${correo},${tipo},0,NULL,1`);
+
+            await sequelize.query(`EXEC sp_UsuariosInsertar '${usuario}','${nombre}','${password}','${correo}',${tipo},0,NULL,1`);
             res.send({
                 type: "Success",
                 message: "El usuario fue creado satisfactoriamente"
