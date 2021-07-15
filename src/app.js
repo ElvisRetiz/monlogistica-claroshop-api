@@ -19,5 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 //Routes
+const userRoute = require('./routes/user.route');
+
+app.use('api/usuarios',userRoute);
 
 module.exports = app;
