@@ -21,8 +21,10 @@ app.use(express.json());
 //Routes
 const userRoute = require('./routes/user.route');
 const branchRoute = require('./routes/branch.route');
+const customerRoute = require('./routes/customer.route');
 
 app.use('/api/usuarios',userRoute);
 app.use('/api/sucursales',branchRoute);
+app.use('/api/clientes',customerRoute);
 
 module.exports = app;
