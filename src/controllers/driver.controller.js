@@ -47,7 +47,7 @@ const controller = {
     deleteDriver: async (req, res) => {
         try {
             const { chofer } = req.query;
-            await sequelize.query(`EXEC '${chofer}'`);
+            await sequelize.query(`EXEC sp_ChoferesBorrar '${chofer}'`);
             return res.send({
                 type: "Success",
                 message: "El chofer fue eliminado satisfactoriamente"
