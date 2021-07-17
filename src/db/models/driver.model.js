@@ -27,3 +27,5 @@ Driver.init({
     tableName: 'Choferes',
     timestamps: false
 });
+
+module.exports = Driver;

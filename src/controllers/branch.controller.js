@@ -65,7 +65,7 @@ const controller = {
     deleteBranch: async (req, res) => {
         try {
             const { sucursal, cliente } = req.query;
-            await sequelize.query(`EXEC sp_SucursalesBorrar ${cliente}, ${sucursal}`);
+            await sequelize.query(`EXEC sp_SucursalesBorrar ${cliente}, '${sucursal}'`);
             return res.send({
                 type: "Success",
                 message: "La sucursal fue eliminada satisfactoriamente"
