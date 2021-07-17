@@ -16,6 +16,19 @@ const controller = {
             })
         }
     },
+    getUser: async (req,res) => {
+        try {
+            const { usuario } = req.params;
+            let user = await User.findByPk(usuario)
+            res.send(user);
+        } catch (error) {
+            console.log(error);
+            return  res.send({
+                type: "Error",
+                message: error.message
+            })
+        }
+    },
     createUser: async (req, res) => {
         try {
             const { usuario, nombre, password, correo, tipo } = req.body;
