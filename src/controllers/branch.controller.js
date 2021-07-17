@@ -48,7 +48,7 @@ const controller = {
                 conEmail
              } = req.body;
 
-             await sequelize.query(`EXEC sp_SucursalesInsertar ${cliente},'${sucursal}','${descripcion}','${direccion}','${numeroExt}','${numero}','${colonia}','${ciudad}','${estado}','${codigoPostal}','${contacto}','${conTelefono}','${conEmail}', 1`);
+             await sequelize.query(`EXEC sp_SucursalesInsertar ${cliente},'${sucursal}','${descripcion}','${direccion}','${numeroExt}','${numeroInt}','${colonia}','${ciudad}','${estado}','${codigoPostal}','${contacto}','${conTelefono}','${conEmail}', 1`);
              
              res.send({
                 type: "Success",
