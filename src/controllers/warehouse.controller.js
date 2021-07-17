@@ -18,7 +18,7 @@ const controller = {
     getWarehouse: async (req, res) => {
         try {
             const { almacen } = req.params;
-            let warehouse = await Warehouse.findByPk(warehouse);
+            let warehouse = await Warehouse.findByPk(almacen);
             return res.send(warehouse);
         } catch (error) {
             console.log(error);
