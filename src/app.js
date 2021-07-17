@@ -23,10 +23,12 @@ const userRoute = require('./routes/user.route');
 const branchRoute = require('./routes/branch.route');
 const customerRoute = require('./routes/customer.route');
 const driverRoute = require('./routes/driver.route');
+const warehouseRoute = require('./routes/warehouse.route');
 
 app.use('/api/usuarios',userRoute);
 app.use('/api/sucursales',branchRoute);
 app.use('/api/clientes',customerRoute);
 app.use('/api/choferes',driverRoute);
+app.use('/api/almacenes',warehouseRoute);
 
 module.exports = app;
