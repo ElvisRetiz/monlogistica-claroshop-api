@@ -20,7 +20,7 @@ const controller = {
         try {
             const { usuario } = req.params;
             let user = await User.findByPk(usuario)
-            res.send(user);
+            return res.send(user);
         } catch (error) {
             console.log(error);
             return  res.send({
@@ -34,10 +34,10 @@ const controller = {
             const { usuario, nombre, password, correo, tipo } = req.body;
 
             await sequelize.query(`EXEC sp_UsuariosInsertar '${usuario}','${nombre}','${password}','${correo}',${tipo},0,NULL,1`);
-            res.send({
+            return res.send({
                 type: "Success",
                 message: "El usuario fue creado satisfactoriamente"
-            })
+            });
         } catch (error) {
             console.log(error);
             return  res.send({
@@ -50,7 +50,7 @@ const controller = {
         try {
             const { usuario } = req.query;
             await sequelize.query(`EXEC sp_UsuariosBorrar '${usuario}'`);
-            res.send({
+            return res.send({
                 type: "Success",
                 message: "El usuario fue eliminado satisfactoriamente"
             })
@@ -60,7 +60,7 @@ const controller = {
             return  res.send({
                 type: "Error",
                 message: error.message
-            })
+            });
         }
     }
 }
