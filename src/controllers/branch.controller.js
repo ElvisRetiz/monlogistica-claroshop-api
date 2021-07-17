@@ -61,6 +61,18 @@ const controller = {
                 message: error.message
             });
         }
+    },
+    deleteBranch: async (req, res) => {
+        try {
+            const { sucursal, cliente } = req.query;
+            await sequelize.query(`EXEC sp_SucursalesBorrar ${cliente}, ${sucursal}`);
+            return res.send({
+                type: "Success",
+                message: "La sucursal fue eliminada satisfactoriamente"
+            })
+        } catch (error) {
+            
+        }
     }
 };
 
