@@ -18,8 +18,8 @@ const controller = {
     getArea: async (req, res) => {
         try {
             const { area } = req.params;
-            let area = await Area.findByPk(area);
-            return res.send(area);
+            let AREA = await Area.findByPk(area);
+            return res.send(AREA);
         } catch (error) {
             console.log(error);
             return  res.send({
