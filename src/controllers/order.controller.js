@@ -5,7 +5,7 @@ const Order = require('../db/models/order.model');
 const controller = {
     getOrders: async (req, res) => {
         try {
-            let orders = Order.findAll();
+            let orders = await Order.findAll();
             return res.send(orders);
         } catch (error) {
             console.log(error);
@@ -18,7 +18,7 @@ const controller = {
     getOrder: async (req, res) => {
         try {
             const { orden } = req.params;
-            let order = Order.findByPk(orden);
+            let order = await Order.findByPk(orden);
             return res.send(order);
         } catch (error) {
             console.log(error);
