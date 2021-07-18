@@ -15,11 +15,26 @@ const controller = {
             });
         }
     },
-    getAreaCP: async (req, res) => {
+    getAreaByCP: async (req, res) => {
         try {
-            const { area, codigopostal } = req.params;
-            let areacp = await AreaCP.findOne({
-                where: { area: area, codigoPostal: codigopostal }
+            const { codigopostal } = req.params;
+            let areacp = await AreaCP.findAll({
+                where: { codigoPostal: codigopostal }
+            });
+            return res.send(areacp);
+        } catch (error) {
+            console.log(error);
+            return  res.send({
+                type: "Error",
+                message: error.message
+            });
+        }
+    },
+    getCPByArea: async (req, res) => {
+        try {
+            const { area } = req.params;
+            let areacp = await AreaCP.findAll({
+                where: { area: area }
             });
             return res.send(areacp);
         } catch (error) {
