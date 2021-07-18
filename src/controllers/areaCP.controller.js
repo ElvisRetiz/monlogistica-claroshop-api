@@ -47,8 +47,8 @@ const controller = {
     },
     createAreaCP: async (req, res) => {
         try {
-            const { area, codigopostal } = req.body;
-            await sequelize.query(`EXEC sp_AreasCPInsertar '${area}', '${codigopostal}'`);
+            const { area, codigoPostal } = req.body;
+            await sequelize.query(`EXEC sp_AreasCPInsertar '${area}', '${codigoPostal}'`);
             return res.send({
                 type: "Success",
                 message: "El registro fue creado satisfactoriamente"
@@ -63,8 +63,8 @@ const controller = {
     },
     deleteAreaCP: async (req, res) => {
         try {
-            const { area, codigopostal } = req.query;
-            await sequelize.query(`EXEC sp_AreasCPBorrar '${area}', '${codigopostal}'`);
+            const { area, codigoPostal } = req.query;
+            await sequelize.query(`EXEC sp_AreasCPBorrar '${area}', '${codigoPostal}'`);
             return res.send({
                 type: "Success",
                 message: "El registro fue eliminado satisfactoriamente"
