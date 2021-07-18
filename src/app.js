@@ -27,6 +27,7 @@ const warehouseRoute = require('./routes/warehouse.route');
 const areaRoute = require('./routes/area.route');
 const areaCPRoute = require('./routes/areaCP.route');
 const adressRoute = require('./routes/adress.route');
+const orderRoute = require('./routes/order.route');
 
 app.use('/api/usuarios',userRoute);
 app.use('/api/sucursales',branchRoute);
@@ -36,5 +37,6 @@ app.use('/api/almacenes',warehouseRoute);
 app.use('/api/areas',areaRoute);
 app.use('/api/areasCP',areaCPRoute);
 app.use('/api/direcciones',adressRoute);
+app.use('/api/ordenes',orderRoute);
 
 module.exports = app;
