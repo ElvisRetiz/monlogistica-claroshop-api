@@ -29,6 +29,7 @@ const areaCPRoute = require('./routes/areaCP.route');
 const adressRoute = require('./routes/adress.route');
 const orderRoute = require('./routes/order.route');
 const guideRoute = require('./routes/guide.route');
+const authRoute = require('./routes/auth.controller');
 
 app.use('/api/usuarios',userRoute);
 app.use('/api/sucursales',branchRoute);
@@ -40,5 +41,6 @@ app.use('/api/areasCP',areaCPRoute);
 app.use('/api/direcciones',adressRoute);
 app.use('/api/ordenes',orderRoute);
 app.use('/api/guias',guideRoute);
+app.use('/api/acceso',authRoute);
 
 module.exports = app;
