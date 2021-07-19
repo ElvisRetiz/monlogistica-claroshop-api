@@ -11,6 +11,7 @@
   "author": "Elvis Retiz",
   "license": "ISC",
   "dependencies": {
+    "dayjs": "^1.10.6",
     "express": "^4.17.1",
     "sequelize": "^6.6.5",
     "tedious": "^11.0.9"
