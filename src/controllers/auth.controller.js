@@ -1,3 +1,4 @@
+const bcrypt = require('bcrypt');
 const dayjs = require('dayjs');
 const sequelize = require('../db/index');
 
@@ -8,15 +9,22 @@ const controller = {
         try {
             const { usuario, password } = req.body;
             let user = await User.findOne({
-                where: { usuario: usuario, password: password }
+                where: { usuario: usuario }
             });
             if (user === null) {
                 return  res.send({
                     type: "Error",
                     message: "Usuario o contraseña invalido"
                 });         
-            }
-            console.log(dayjs().format('YYYYMMDD'));
+            };
+            let correctPassword = await bcrypt.compare(password,user.password);
+            console.log("PASSWORD CORRECTO: ", correctPassword);
+            if (!correctPassword) {
+                return  res.send({
+                    type: "Error",
+                    message: "Usuario o contraseña invalido"
+                });
+            };
             await sequelize.query(`
                 EXEC sp_UsuariosInsertar 
                 '${user.usuario}', 
@@ -29,7 +37,7 @@ const controller = {
                 ${user.activo === true ? 1 : 0} 
             `);
             user = await User.findOne({
-                where: { usuario: usuario, password: password }
+                where: { usuario: usuario }
             });
             return res.send({
                 type: "Succes",
