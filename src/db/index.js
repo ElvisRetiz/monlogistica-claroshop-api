@@ -7,11 +7,6 @@ let dbUser = "sa", dbPassword = "kitsacv", dbServer = 'ELVIS-RETIZ', dbName = "C
 const sequelize = new Sequelize(dbName, dbUser, dbPassword, {
   host: dbServer,
   dialect: 'mssql'
-  /*dialectOptions: { 
-    options: {
-      instanceName: 'SQLEXPRESS'
-    }
-  }*/
 });
 
 module.exports = sequelize;

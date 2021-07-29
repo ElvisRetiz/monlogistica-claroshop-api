@@ -5,7 +5,8 @@ const router = express.Router();
 
 router.get("/",controller.getGuides);
 router.get("/:orden",controller.getGuidesByOrder);
-router.post("/recolectada",controller.markGuidesAsCollected);
+router.post("/recolectada",controller.createGuide);
+router.post("/almacen",controller.deliveryGuideToWarehouse);
 router.post("/entregada",controller.markGuideAsDelivered);
 
 module.exports = router;
