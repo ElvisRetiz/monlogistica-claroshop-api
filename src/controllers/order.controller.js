@@ -31,7 +31,7 @@ const controller = {
     },
     getOrdersPendingToBeAssigned: async (req, res) => {
         try {
-            let orders = Order.findAll({
+            let orders = await Order.findAll({
                 where: { estatus: 'Nueva' }
             });
             return res.send({
