@@ -32,18 +32,19 @@ const controller = {
     },
     createUser: async (req, res) => {
         try {
-            const { usuario, nombre, password, correo, tipo } = req.body;
+            const { usuario, nombre, password, correo, tipo, chofer } = req.body;
             let user = await User.findByPk(usuario);
             if (!user) {
                 let hashPassword = await bcrypt.hash(password,5);
-                await sequelize.query(`EXEC sp_UsuariosInsertar '${usuario}','${nombre}','${hashPassword}','${correo}',${tipo},0,NULL,1`);
+                let driver = chofer ? `'${chofer}'` : null ;
+                await sequelize.query(`EXEC sp_UsuariosInsertar '${usuario}','${nombre}','${hashPassword}','${correo}',${tipo},0,NULL,1,${driver}`);
             } else {
-                console.log("PASSWORD: ", !password);
                 let hashPassword = user.password;
                 let userName = user.nombre;
                 let userMail = user.correo;
                 let userType = user.tipo;
                 let userLastConnection = user.ultimoAcceso;
+                let userDriver = user.chofer;
                 if (password) {
                     hashPassword = await bcrypt.hash(password,5);
                 };
@@ -57,14 +58,18 @@ const controller = {
                     userType = tipo;
                 };
                 if (userLastConnection) {
-                    user.ultimoAcceso.setDate(user.ultimoAcceso.getDate()+1);
-                    userLastConnection = `'${dayjs(user.ultimoAcceso).format('YYYYMMDD')}'`;
+                    userLastConnection = `'${dayjs.utc(user.ultimoAcceso).local().format('YYYYMMDD')}'`;
                 };
-                await sequelize.query(`EXEC sp_UsuariosInsertar '${usuario}','${userName}','${hashPassword}','${userMail}',${userType},${user.dentro === true ? 1 : 0},${userLastConnection},${user.activo === true ? 1 : 0}`);
+                if (chofer) {
+                    userDriver = chofer; 
+                };
+                await sequelize.query(`EXEC sp_UsuariosInsertar '${usuario}','${userName}','${hashPassword}','${userMail}',${userType},${user.dentro === true ? 1 : 0},${userLastConnection},${user.activo === true ? 1 : 0},${userDriver}`);
             }
+            user = await User.findByPk(usuario);
             return res.send({
                 type: "Success",
-                message: "El usuario fue creado satisfactoriamente"
+                message: "El usuario fue creado satisfactoriamente",
+                data: user
             });
         } catch (error) {
             console.log(error);

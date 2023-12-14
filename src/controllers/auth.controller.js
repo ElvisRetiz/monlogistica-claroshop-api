@@ -18,13 +18,13 @@ const controller = {
                 });         
             };
             let correctPassword = await bcrypt.compare(password,user.password);
-            console.log("PASSWORD CORRECTO: ", correctPassword);
             if (!correctPassword) {
                 return  res.send({
                     type: "Error",
                     message: "Usuario o contraseña invalido"
                 });
             };
+            console.log(user.chofer);
             await sequelize.query(`
                 EXEC sp_UsuariosInsertar 
                 '${user.usuario}', 
@@ -34,7 +34,8 @@ const controller = {
                 ${user.tipo},
                 1, 
                 '${dayjs().format('YYYYMMDD')}',
-                ${user.activo === true ? 1 : 0} 
+                ${user.activo === true ? 1 : 0},
+                ${user.chofer}
             `);
             user = await User.findOne({
                 where: { usuario: usuario }
@@ -68,7 +69,8 @@ const controller = {
                 ${user.tipo},
                 0,
                 '${dayjs(user.ultimoAcceso).format('YYYYMMDD')}', 
-                ${user.activo}
+                ${user.activo},
+                ${user.chofer}
             `);
             return res.send({
                 type: "Succes",

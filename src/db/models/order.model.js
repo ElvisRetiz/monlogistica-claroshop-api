@@ -18,7 +18,7 @@ Order.init({
         allowNull: true
     },
     cliente: {
-        type: DataTypes.INTEGER,
+        type: DataTypes.CHAR,
         allowNull: true
     },
     sucursal: {
@@ -39,6 +39,18 @@ Order.init({
     },
     choferRecoleccion: {
         type: DataTypes.CHAR,
+        allowNull: true
+    },
+    paquetesReales: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    quienValida: {
+        type: DataTypes.CHAR,
+        allowNull: true
+    },
+    firmaValida: {
+        type: DataTypes.BLOB,
         allowNull: true
     }
 },{

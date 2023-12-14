@@ -4,8 +4,17 @@ const sequelize = require('../index');
 class Parameter extends Model {};
 
 Parameter.init({
-    cantidadDevoluciones: {
-        type: DataTypes.INTEGER,
+    nombreTabla: {
+        type: DataTypes.CHAR,
+        allowNull: true,
+        primaryKey: true
+    },
+    nombreCampo: {
+        type: DataTypes.CHAR,
+        allowNull: true
+    },
+    valorCampo: {
+        type: DataTypes.CHAR,
         allowNull: true
     }
 },{

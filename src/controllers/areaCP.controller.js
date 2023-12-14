@@ -49,9 +49,13 @@ const controller = {
         try {
             const { area, codigoPostal } = req.body;
             await sequelize.query(`EXEC sp_AreasCPInsertar '${area}', '${codigoPostal}'`);
+            let data = await AreaCP.findOne({
+                where: { codigoPostal: codigoPostal }
+            });
             return res.send({
                 type: "Success",
-                message: "El registro fue creado satisfactoriamente"
+                message: "El registro fue creado satisfactoriamente",
+                data: data
             }); 
         } catch (error) {
             console.log(error);

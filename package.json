@@ -13,10 +13,16 @@
   "dependencies": {
     "base64-arraybuffer": "^0.2.0",
     "bcrypt": "^5.0.1",
+    "bwip-js": "^3.0.4",
     "dayjs": "^1.10.6",
     "express": "^4.17.1",
+    "firebase": "^9.4.1",
+    "html-pdf": "^3.0.1",
+    "qrcode": "^1.4.4",
     "sequelize": "^6.6.5",
-    "tedious": "^11.0.9"
+    "svg-to-dataurl": "^1.0.0",
+    "tedious": "^11.0.9",
+    "web-push": "^3.4.5"
   },
   "devDependencies": {
     "nodemon": "^2.0.12"

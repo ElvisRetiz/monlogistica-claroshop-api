@@ -61,6 +61,10 @@ Branch.init({
     activo: {
         type: DataTypes.BOOLEAN,
         allowNull: true
+    },
+    almacen: {
+        type: DataTypes.CHAR,
+        allowNull: false,
     }
 },{
     sequelize,

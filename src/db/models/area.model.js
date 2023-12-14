@@ -16,6 +16,10 @@ Area.init({
     activo: {
         type: DataTypes.BOOLEAN,
         allowNull: true
+    },
+    zona: {
+        type: DataTypes.CHAR,
+        allowNull: true
     }
 },{
     sequelize,

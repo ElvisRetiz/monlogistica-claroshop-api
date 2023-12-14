@@ -32,9 +32,11 @@ const controller = {
         try {
             const { chofer, nombre, empresa } = req.body;
             await sequelize.query(`EXEC sp_ChoferesInsertar '${chofer}', '${nombre}', '${empresa}', 1`);
+            let driver = await Driver.findByPk(chofer);
             return res.send({
                 type: "Success",
-                message: "El chofer fue registrado satisfactoriamente"
+                message: "El chofer fue registrado satisfactoriamente",
+                data: driver
             });
         } catch (error) {
             console.log(error);

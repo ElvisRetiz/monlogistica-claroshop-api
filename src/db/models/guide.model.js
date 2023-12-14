@@ -6,8 +6,7 @@ class Guide extends Model {};
 Guide.init({
     orden: {
         type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true
+        allowNull: true
     },
     guia: {
         type: DataTypes.CHAR,
@@ -82,10 +81,62 @@ Guide.init({
         type: DataTypes.BLOB,
         allowNull: true
     },
-	devueltaAlmacen: {
-        type: DataTypes.BOOLEAN,
+	fechaDevueltaAlmacen: {
+        type: DataTypes.DATE,
         allowNull: true
-    }
+    },
+    posicion: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    telefono: {
+        type: DataTypes.CHAR,
+        allowNull: true
+    },
+    numeroPedido: {
+        type: DataTypes.CHAR,
+        allowNull: true
+    },
+    referencias: {
+        type: DataTypes.CHAR,
+        allowNull: true
+    },
+    fotoOtro: {
+        type: DataTypes.BLOB,
+        allowNull: true
+    },
+    ancho: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    largo: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    alto: {
+        type: DataTypes.INTEGER,
+        allowNull: true
+    },
+    descripcionPaquete: {
+        type: DataTypes.CHAR,
+        allowNull: true
+    },
+    cliente: {
+        type: DataTypes.CHAR,
+        allowNull: true
+    },
+    sucursal: {
+        type: DataTypes.CHAR,
+        allowNull: true
+    },
+    peso: {
+        type: DataTypes.CHAR,
+        allowNull: true
+    },
+    fechaEnvio: {
+        type: DataTypes.DATE,
+        allowNull: true
+    },
 },{
     sequelize,
     modelName: 'Guide',

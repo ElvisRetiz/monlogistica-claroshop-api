@@ -32,9 +32,11 @@ const controller = {
         try {
             const { almacen, descripcion } = req.body;
             await sequelize.query(`EXEC sp_AlmacenesInsertar '${almacen}', '${descripcion}', 1`);
+            let warehouse = await Warehouse.findByPk(almacen);
             return res.send({
                 type: "Success",
-                message: "El almacen fue registrado satisfactoriamente"
+                message: "El almacen fue registrado satisfactoriamente",
+                data: warehouse
             });
         } catch (error) {
             console.log(error);

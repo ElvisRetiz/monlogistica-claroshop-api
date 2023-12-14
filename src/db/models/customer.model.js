@@ -60,6 +60,14 @@ Customer.init({
     activo: {
         type: DataTypes.BOOLEAN,
         allowNull: true
+    },
+    nombreCorto: {
+        type: DataTypes.CHAR,
+        allowNull: true
+    },
+    limiteIntentos: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 },{
     sequelize,

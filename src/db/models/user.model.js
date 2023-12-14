@@ -36,7 +36,11 @@ User.init({
     ultimoAcceso: {
         type: DataTypes.DATE,
         allowNull: true
-    }
+    },
+    chofer: {
+        type: DataTypes.CHAR,
+        allowNull: true
+    },
 },{
     sequelize,
     modelName: 'User',

@@ -30,11 +30,13 @@ const controller = {
     },
     createArea: async (req, res) => {
         try {
-            const { area, descripcion } = req.body;
-            await sequelize.query(`EXEC sp_AreasInsertar '${area}', '${descripcion}', 1`);
+            const { area, descripcion, zona } = req.body;
+            await sequelize.query(`EXEC sp_AreasInsertar '${area}', '${descripcion}', 1, '${zona}'`);
+            let data = await Area.findByPk(area);
             return res.send({
                 type: "Success",
-                message: "Area fue creada satisfactoriamente"
+                message: "Area fue creada satisfactoriamente",
+                data: data
             });
         } catch (error) {
             console.log(error);

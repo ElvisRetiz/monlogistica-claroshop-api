@@ -43,13 +43,17 @@ const controller = {
                 rfc,
                 contacto,
                 conTelefono,
-                conEmail
+                conEmail,
+                nombreCorto,
+                limiteIntentos
              } = req.body;
 
-             await sequelize.query(`EXEC sp_ClientesInsertar ${cliente},'${razonSocial}','${direccion}','${numeroExt}','${numeroInt}','${colonia}','${ciudad}','${estado}','${codigoPostal}','${rfc}','${contacto}','${conTelefono}','${conEmail}', 1`);
+             await sequelize.query(`EXEC sp_ClientesInsertar '${cliente}','${razonSocial}','${direccion}','${numeroExt}','${numeroInt}','${colonia}','${ciudad}','${estado}','${codigoPostal}','${rfc}','${contacto}','${conTelefono}','${conEmail}', 1,'${nombreCorto}', ${parseInt(limiteIntentos)}`);
+             let customer = await Customer.findByPk(cliente);
              return res.send({
                 type: "Success",
-                message: "El cliente fue registrado satisfactoriamente"
+                message: "El cliente fue registrado satisfactoriamente",
+                data: customer
             });
         } catch (error) {
             console.log(error);
